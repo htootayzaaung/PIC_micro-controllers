@@ -1,0 +1,60 @@
+'****************************************************************
+'*  Name    : UNTITLED.BAS                                      *
+'*  Author  : [select VIEW...EDITOR OPTIONS]                    *
+'*  Notice  : Copyright (c) 2022 [select VIEW...EDITOR OPTIONS] *
+'*          : All Rights Reserved                               *
+'*  Date    : 8/10/2022                                         *
+'*  Version : 1.0                                               *
+'*  Notes   :                                                   *
+'*          :                                                   *
+'****************************************************************
+Define OSC 4
+TRISA=%11111111
+TRISB=%11111111
+TRISC=%00000000
+TRISD=%11111111
+TRISE=%11111111
+
+PORTA=0
+PORTB=0
+PORTC=0
+PORTD=0
+PORTE=0
+
+ANSEL=%00000000
+ANSELH=%00000000
+
+DELAY CON 1000
+I VAR BYTE
+I = 0
+
+MAIN:
+    PORTC=%00111111
+    PAUSE DELAY
+    PORTC=%00000110
+    PAUSE DELAY
+    PORTC=%01011011
+    PAUSE DELAY
+    PORTC=%01001111
+    PAUSE DELAY
+    PORTC=%01100110
+    PAUSE DELAY
+    PORTC=%01101101
+    PAUSE DELAY
+    PORTC=%01111101
+    PAUSE DELAY
+    PORTC=%00000111
+    PAUSE DELAY
+    PORTC=%01111111
+    PAUSE DELAY
+    PORTC=%01101111
+    PAUSE DELAY
+    
+    FOR I = 0 TO 9
+        LOOKUP I, [$3F, $06, $5B, $4F, $66, $6D, $7D, $07, $7F, $6F], PORTC
+        PAUSE DELAY
+    NEXT I
+
+GOTO MAIN
+
+        

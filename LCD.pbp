@@ -1,0 +1,18 @@
+'****************************************************************
+'*  Name    : UNTITLED.BAS                                      *
+'*  Author  : [select VIEW...EDITOR OPTIONS]                    *
+'*  Notice  : Copyright (c) 2022 [select VIEW...EDITOR OPTIONS] *
+'*          : All Rights Reserved                               *
+'*  Date    : 8/23/2022                                         *
+'*  Version : 1.0                                               *
+'*  Notes   :                                                   *
+'*          :                                                   *
+'****************************************************************
+DEFINE osc 4
+
+DEFINE LCD_DREG PORTD
+DEFINE LCD_DBIT 0
+DEFINE LCD_RSREG PORTE
+DEFINE LCD_RSBIT 2
+DEFINE LCD_EREG PORTE
+

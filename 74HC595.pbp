@@ -1,0 +1,69 @@
+'****************************************************************
+'*  Name    : UNTITLED.BAS                                      *
+'*  Author  : [select VIEW...EDITOR OPTIONS]                    *
+'*  Notice  : Copyright (c) 2022 [select VIEW...EDITOR OPTIONS] *
+'*          : All Rights Reserved                               *
+'*  Date    : 8/12/2022                                         *
+'*  Version : 1.0                                               *
+'*  Notes   :                                                   *
+'*          :                                                   *
+'****************************************************************
+DEFINE OSC 4
+
+TRISE=%11111111
+TRISA=%11111111
+TRISB=%11111000
+TRISC=%11111111
+TRISD=%11111111
+
+ANSEL=%00000000
+ANSELH=%00000000
+
+'SHIFT OUT
+DEFINE SHIFT_PAUSEUS 100
+INCLUDE "modedefs.bas"
+
+'variable define
+SECOND VAR BYTE
+SECOND1 VAR BYTE
+SECOND2 VAR BYTE
+MINUTE VAR BYTE
+MINUTE1 VAR BYTE
+MINUTE2 VAR BYTE
+SECOND = 0
+MINUTE = 0
+
+DS  VAR PORTB.0
+CLK VAR PORTB.1
+OE  VAR PORTB.2
+OE = 1
+
+
+MAIN:
+    
+    IF SECOND = 60 THEN
+        SECOND = 0
+        MINUTE = MINUTE + 1
+        IF MINUTE = 60 THEN MINUTE = 0
+    ENDIF
+    
+    SECOND1 = SECOND DIG 0
+    SECOND2 = SECOND DIG 1
+    MINUTE1 = MINUTE DIG 0
+    MINUTE2 = MINUTE DIG 1
+    
+    LOOKUP SECOND1, [63, 6, 91, 79, 102, 109, 125, 7, 127, 111], SECOND1
+    LOOKUP SECOND2, [63, 6, 91, 79, 102, 109, 125, 7, 127, 111], SECOND2
+    LOOKUP MINUTE1, [63, 6, 91, 79, 102, 109, 125, 7, 127, 111], MINUTE1
+    LOOKUP MINUTE2, [63, 6, 91, 79, 102, 109, 125, 7, 127, 111], MINUTE2
+    
+    OE=1
+    SHIFTOUT DS,CLK,1,[SECOND1,SECOND2,MINUTE1,MINUTE2]
+    OE=0
+    
+    PAUSE 1000
+    SECOND = SECOND + 1
+    
+GOTO MAIN
+
+

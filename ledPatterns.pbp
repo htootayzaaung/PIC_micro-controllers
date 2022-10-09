@@ -1,0 +1,64 @@
+'****************************************************************
+'*  Name    : UNTITLED.BAS                                      *
+'*  Author  : [select VIEW...EDITOR OPTIONS]                    *
+'*  Notice  : Copyright (c) 2022 [select VIEW...EDITOR OPTIONS] *
+'*          : All Rights Reserved                               *
+'*  Date    : 8/9/2022                                          *
+'*  Version : 1.0                                               *
+'*  Notes   :                                                   *
+'*          :                                                   *
+'****************************************************************
+
+DEFINE OSC 4
+TRISA=%11111111
+TRISB=%11111111
+TRISC=%00000000
+TRISD=%11111111
+TRISE=%00001111
+
+PORTA=0
+PORTB=0
+PORTC=0
+PORTD=0
+PORTE=0
+
+ANSEL=%000000000
+ANSELH=%000000000
+
+DELAY CON 200
+
+MAIN:
+    IF PORTA.0 = 1 AND PORTA.1 = 0 AND PORTA.2 = 0 THEN PATTERN1
+    IF PORTA.0 = 0 AND PORTA.1 = 1 AND PORTA.2 = 0 THEN PATTERN2
+    IF PORTA.0 = 0 AND PORTA.1 = 0 AND PORTA.2 = 1 THEN PATTERN3
+    PORTC=%00000000
+GOTo MAIN
+
+PATTERN1:
+    PORTC=%00011000
+    PAUSE DELAY 
+    PORTC=%00111100
+    PAUSE DELAY 
+    PORTC=%01111110
+    PAUSE DELAY  
+    PORTC=%11111111
+    PAUSE DELAY 
+    PORTC=%00000000
+    PAUSE DELAY 
+GOTO MAIN
+
+PATTERN2:
+    PORTC=%111111111
+    PAUSE DELAY
+    PORTC=%000000000
+    PAUSE DELAY 
+GOTO MAIN
+
+PATTERN3:
+    PORTC=%00001111
+    PAUSE DELAY 
+    PORTC=%11110000
+    PAUSE DELAY 
+GOTO MAIN
+              
+    

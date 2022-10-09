@@ -1,0 +1,23 @@
+'****************************************************************
+'*  Name    : UNTITLED.BAS                                      *
+'*  Author  : [select VIEW...EDITOR OPTIONS]                    *
+'*  Notice  : Copyright (c) 2022 [select VIEW...EDITOR OPTIONS] *
+'*          : All Rights Reserved                               *
+'*  Date    : 8/4/2022                                          *
+'*  Version : 1.0                                               *
+'*  Notes   :                                                   *
+'*          :                                                   *
+'****************************************************************
+Define osc4
+TRISA=%11111111
+TRISB=%00000000
+TRISC=%11111111
+TRISD=%11111111
+TRISE=%11111111
+
+MAIN:
+PORTB=%11111111
+PAUSE 1000
+PORTB=%00000000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+PAUSE 1000
+GOTO MAIN 

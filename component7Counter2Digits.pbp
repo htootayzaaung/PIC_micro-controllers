@@ -1,0 +1,40 @@
+'****************************************************************
+'*  Name    : UNTITLED.BAS                                      *
+'*  Author  : [select VIEW...EDITOR OPTIONS]                    *
+'*  Notice  : Copyright (c) 2022 [select VIEW...EDITOR OPTIONS] *
+'*          : All Rights Reserved                               *
+'*  Date    : 8/10/2022                                         *
+'*  Version : 1.0                                               *
+'*  Notes   :                                                   *
+'*          :                                                   *
+'****************************************************************
+DEFINE OSC 4
+TRISA=%11111111
+TRISB=%11111111
+TRISC=%00000000
+TRISD=%00000000
+TRISE=%11111111
+
+PORTA=0
+PORTB=0
+PORTC=0
+PORTD=0
+PORTE=0
+
+ANSEL=%00000000
+ANSELH=%00000000
+
+DELAY CON 10
+I VAR BYTE
+DIGIT1 VAR BYTE
+DIGIT2 VAR BYTE
+
+MAIN:
+    FOR I = 0 to 99
+        DIGIT1 = I DIG 0
+        DIGIT2 = I DIG 1
+        LOOKUP DIGIT1, [$3F, $06, $5B, $4F, $66, $6D, $7D, $07, $7F, $6F], PORTC
+        LOOKUP DIGIT2, [$3F, $06, $5B, $4F, $66, $6D, $7D, $07, $7F, $6F], PORTD
+        PAUSE DELAY
+    NEXT I
+GOTO MAIN
